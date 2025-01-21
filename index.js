@@ -55,6 +55,8 @@ app.delete("/api/persons/:id", (request, response) => {
   const person = persons.find((person) => person.id === id);
   if (!person) {
     return response.status(404).json({ error: "Person not found" });
+  } else {
+    response.json(person);
   }
   persons = persons.filter((person) => person.id !== id);
   response.status(204).end();
