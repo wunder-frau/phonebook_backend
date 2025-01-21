@@ -24,6 +24,12 @@ let persons = [
   },
 ];
 
+const generateId = () => {
+  return persons.length > 0
+    ? Math.max(...persons.map((n) => Number(n.id))) + 1
+    : 1;
+};
+
 app.use(express.json());
 
 app.get("/api/persons", (request, response) => {
@@ -71,7 +77,7 @@ app.post("/api/persons", (request, response) => {
     });
   }
   const person = {
-    id: String(persons.length + 1),
+    id: String(generateId()),
     name: body.name,
     number: body.number,
   };
